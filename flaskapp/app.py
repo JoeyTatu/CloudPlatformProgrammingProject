@@ -1,10 +1,9 @@
 import os
 
 from flask import Flask, render_template, request, redirect, send_file, url_for, jsonify
-# from flask_sqlalchemy import SQLAlchemy
+# from flask_sqlalchemy import SQLAlchemyy
 import aws_controller
-
-from s3
+from s3 import list_files, upload_file, download_file
 
 import logging
 import boto3
@@ -18,7 +17,7 @@ import io
 app = Flask(__name__)
 
 # init SQLAlchemy so we can use it later in our models
-db = SQLAlchemy()
+# db = SQLAlchemy()
 
 def create_app():
 
