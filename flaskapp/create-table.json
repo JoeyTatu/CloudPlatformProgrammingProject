@@ -1,0 +1,15 @@
+{
+    "TableName": "Users",
+    "KeySchema": [
+        { "AttributeName": "id", "KeyType": "HASH" },
+        { "AttributeName": "email", "KeyType": "RANGE" }
+    ],
+    "AttributeDefinitions": [
+        { "AttributeName": "id", "AttributeType": "N" },
+        { "AttributeName": "email", "AttributeType": "S" }
+    ],
+    "ProvisionedThroughput": {
+        "ReadCapacityUnits": 5,
+        "WriteCapacityUnits": 5
+    }
+}

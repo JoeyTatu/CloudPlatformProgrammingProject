@@ -134,32 +134,44 @@ def list_files(bucket):
 
     return contents
     
-def get_image(bucket, filename):
+# def get_image(bucket, filename):
   
-    s3 =  boto3.resource('s3')
+#     s3 =  boto3.resource('s3')
   
-    obj  = s3.Object(bucket,filename)
+#     obj  = s3.Object(bucket, filename)
+ 
+
+#     try:
   
-    try:
+#         file_stream = obj.get()['Body'].read()
+        
+#         if "pdf" in file_path:
+#             response = HttpResponse(file_stream, content_type='application/pdf')
+            
+#         if "jpg" in file_path:
+#             response = HttpResponse(file_stream,content_type="image/jpeg")
+            
+#         if "jpeg" in file_path:
+#             response = HttpResponse(file_stream,content_type="image/jpeg")
+            
+#         if "png" in file_path:
+#             response = HttpResponse(file_stream,content_type="image/png")
   
-        file_stream = obj.get()['Body'].read()
+#         response['Content-Disposition'] = 'filename=%s' %  file_path
   
-        if "pdf" in file_path:
-            response = HttpResponse(file_stream, content_type='application/pdf')
-  
-        if "jpg" in file_path:
-            response = HttpResponse(file_stream,content_type="image/jpeg")
-  
-        if "jpeg" in file_path:
-            response = HttpResponse(file_stream,content_type="image/jpeg")
-  
-        response['Content-Disposition'] = 'filename=%s' %  file_path
-  
-        return response
-    except:
-        return False
-    
-    return response
+#         return response
+#     except:
+#         return False
+
+def download_file(file_name, bucket):
+    """
+    Function to download a given file from an S3 bucket
+    """
+    s3 = boto3.resource('s3')
+    output = f"{file_name}"  ## output = f"downloads/{file_name}" -> forward slashes "/" mess it up. Use blackslashes "\"
+    s3.Bucket(bucket).download_file(file_name, output)
+
+    return output
 
     
 def main():

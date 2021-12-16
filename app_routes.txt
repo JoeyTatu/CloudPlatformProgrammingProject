@@ -1,0 +1,18 @@
+/ - Home
+
+/account - User accounts
+-- /account/signup - User signs up
+-- /account/login - User logs in
+-- /account/access - Process sign up/login -- CODE ONLY - NO TEMPLATE
+
+/image - Image
+-- /image/upload - Upload image
+-- /image/scan - Scan image for elements -- CODE ONLY - NO TEMPLATE
+-- /image/scan_result - Template for showing scan result
+
+/twitter - Twitter main page
+-- /twitter/search - Twitter search -- CODE ONLY - NO TEMPLATE
+-- /twitter/search_result - Twitter Search results
+
+/temp - Temp route to show images (not working, response cannot be an image. Fixed it.
+    Was usung forward slashes "/", needs to be backslashes "\". 

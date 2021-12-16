@@ -1,0 +1,66 @@
+{
+    "Users": [{
+            "PutRequest": {
+                "Item": {
+                    "id": {
+                        "N": "1"
+                    },
+                    "email": {
+                        "S": "email@exmail.com"
+                    },
+                    "first_name": {
+                        "S": "John"
+                    },
+                    "last_name": {
+                        "S": "Smith"
+                    },
+                    "password": {
+                        "S": "1234"
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "id": {
+                        "N": "2"
+                    },
+                    "email": {
+                        "S": "email2@exmail.com"
+                    },
+                    "first_name": {
+                        "S": "Mary"
+                    },
+                    "last_name": {
+                        "S": "Smith"
+                    },
+                    "password": {
+                        "S": "1234"
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "id": {
+                        "N": "3"
+                    },
+                    "email": {
+                        "S": "email3@exmail.com"
+                    },
+                    "first_name": {
+                        "S": "David"
+                    },
+                    "last_name": {
+                        "S": "Bloggs"
+                    },
+                    "password": {
+                        "S": "1234"
+                    }
+                }
+            }
+        }
+    ]
+}
