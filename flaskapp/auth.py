@@ -1,16 +1,17 @@
-from flask import Blueprint, render_template
-from . import db
+from flask import Blueprint, Flask, render_template, request, redirect, send_file, url_for, jsonify
+import aws_controller
+# from . import db
 
 auth = Blueprint('auth', __name__)
 
-@auth.route('/login')
+@auth.route('/account/login')
 def login():
     return render_template('account/login.html')
 
-@auth.route('/signup')
+@auth.route('/account/signup')
 def signup():
     return render_template('account/signup.html')
 
-@auth.route('/logout')
+@auth.route('/account/logout')
 def logout():
     return 'Logout'

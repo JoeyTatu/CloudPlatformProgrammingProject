@@ -1,8 +1,10 @@
 import os
 
 from flask import Flask, render_template, request, redirect, send_file, url_for, jsonify
+from flask_bootstrap import Bootstrap
 # from flask_sqlalchemy import SQLAlchemyy
 import aws_controller
+import auth
 from s3 import list_files, upload_file, download_file
 
 import logging
@@ -16,14 +18,18 @@ import io
 
 app = Flask(__name__)
 
+UPLOAD_FOLDER = "uploads"
+BUCKET = "s3app-600"
+bootstrap = Bootstrap(app)
+
 # init SQLAlchemy so we can use it later in our models
 # db = SQLAlchemy()
 
 def create_app():
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
+    # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
 
-    db.init_app(app)
+    # db.init_app(app)
 
     # blueprint for auth routes in our app
     from .auth import auth as auth_blueprint
@@ -37,8 +43,8 @@ def create_app():
 
 ### Home
 @app.route('/') # Home page
-def entry_point():
-    return render_template('index.html')
+def index():
+    return render_template('/index.html')
     
 ## DynamoDB
 @app.route('/get-items')
@@ -55,16 +61,16 @@ def profile():
     return render_template('account/profile.html')
     
 @app.route("/account/signup")
-def sign_up():
-    return "Account/SignUp"
+def signup():
+    auth.signup()
 
 @app.route("/account/login")
 def login():
-    return "Account/Login"
+    auth.login()
     
 @app.route("/account/logout")
 def logout():
-    return "Account/Logout"
+    auth.logout()
     
 @app.route("/account/access/<action>") #action = "login" or "signup"
 def access(action):
