@@ -30,13 +30,35 @@ client = boto3.client('rekognition')
 #                                )
    
 #S3 Bucket                                
-# response = client.detect_labels(Image=
-#                                 {'S3Object': {
-#                                     'Bucket': BUCKET,
-#                                     'Name': JOEY
-#                                 }},
-#                                 MaxLabels = 10,
-#                                 MinConfidence=95)
+response = client.detect_labels(Image=
+                                {'S3Object': {
+                                    'Bucket': BUCKET,
+                                    'Name': JOEY
+                                }},
+                                MaxLabels = 10,
+                                MinConfidence=95)
+                                
+                                
+# @ref: Hugo - https://stackoverflow.com/questions/51192145/aws-rekognition-responsefacedetails               
+for labels in response['Labels']:
+    name = labels['Name'] #to get the whole bounding box.
+    confidence = labels['Confidence'] 
+    # width = imgWidth * box['Width'] #the width of the bb.
+    print(str(name) + ", " + str(confidence)) #access age range low & high
+
+
+
+
+
+
+#     if key == 'Labels':
+#         #name = response.get('Labels', {}).get('Name')
+#         #confidence = response.get('Labels', {}).get('Confidence')
+#
+
+# <class '__main__.Hasher'>
+        
+        #print(f"Name {name}. \n Confidence: {confidence}")
 
 #Moderation testing
 # response = client.detect_moderation_labels(Image=
@@ -48,16 +70,16 @@ client = boto3.client('rekognition')
 #                                 MinConfidence=95)
 
 #Face detection
-response = client.detect_faces(Image=
-                                    {'S3Object': {
-                                        'Bucket': BUCKET,
-                                        'Name': MEN
-                                        }
-                                    },
-                                    Attributes=[
-                                        'ALL',
-                                    ]
-                                )
+# response = client.detect_faces(Image=
+#                                     {'S3Object': {
+#                                         'Bucket': BUCKET,
+#                                         'Name': MEN
+#                                         }
+#                                     },
+#                                     Attributes=[
+#                                         'ALL',
+#                                     ]
+#                                 )
 
 # for key, value in response.items():
 #     if key == 'FaceDetails':
@@ -73,5 +95,5 @@ response = client.detect_faces(Image=
 #print(type(response))
 # print(response)
 
-json_object = json.dumps(response)
-print(json_object)
+# json_object = json.dumps(response) # convert type dict to json
+# print(json_object)
