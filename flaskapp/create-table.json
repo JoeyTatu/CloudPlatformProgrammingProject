@@ -1,3 +1,5 @@
+// Can be used in creation of DynamoDB table with terminal. 
+
 {
     "TableName": "Users",
     "KeySchema": [

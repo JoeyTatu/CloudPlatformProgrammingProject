@@ -5,46 +5,88 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Flask Auth Example</title>
+    <title>TattScan</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link href="https://getbootstrap.com/docs/3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="https://getbootstrap.com/docs/3.3/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="https://getbootstrap.com/docs/3.3/examples/jumbotron/jumbotron.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="https://getbootstrap.com/docs/3.3/assets/js/ie-emulation-modes-warning.js"></script>
+    <style>
+        body {
+            background: #79d2a6;
+            background-color: #79d2a6;
+        }
+    </style>
 </head>
 
 <body>
-    <section class="hero is-primary is-fullheight">
-
-        <div class="hero-head">
-            <nav class="navbar">
-                <div class="container">
-                    <div id="navbarMenuHeroA" class="navbar-menu">
-                        <div class="navbar-end">
-                            <a href="{{ url_for('index') }}" class="navbar-item">
-                                Home
-                            </a>
-                            <a href="{{ url_for('profile') }}" class="navbar-item">
-                                Profile
-                            </a>
-                            <a href="{{ url_for('login') }}" class="navbar-item">
-                                Login
-                            </a>
-                            <a href="{{ url_for('signup') }}" class="navbar-item">
-                                Sign Up
-                            </a>
-                            <a href="{{ url_for('logout') }}" class="navbar-item">
-                                Logout
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-        </div>
-
-        <div class="hero-body">
-            <div class="container has-text-centered">
-               {% block content %}
-               {% endblock %}
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{{ url_for('index') }}">TattScan</a>
             </div>
+            <ul class="nav navbar-nav">
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('storage') }}">Images</a></li>
+                <li><a href="{{ url_for('profile') }}">Profile</a></li>
+                <li><a href="{{ url_for('signup') }}">Signup</a></li>
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
         </div>
-    </section>
+    </nav>
+
+
+    <!--<nav class="navbar navbar-expand-lg navbar-light bg-light">-->
+    <!--<a class="navbar-brand" href="#">Navbar</a>-->
+    <!--    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+    <!--        <span class="navbar-toggler-icon"></span>-->
+    <!--    </button>-->
+
+    <!--    <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
+    <!--        <ul class="navbar-nav mr-auto">-->
+    <!--            <li class="nav-item active">-->
+    <!--                <a class="nav-link" href="{{ url_for('index') }}">Home</a>-->
+    <!--            </li>-->
+    <!--            <li class="nav-item">-->
+    <!--                <a class="nav-link" href="{{ url_for('storage') }}">Images</a>-->
+    <!--            </li>-->
+    <!--            <li class="nav-item dropdown">-->
+    <!--                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+    <!--                    Account-->
+    <!--                </a>-->
+    <!--                <div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+    <!--                    <a class="dropdown-item" href="{{ url_for('profile') }}">Profile</a>-->
+    <!--                    <a class="dropdown-item" href="{{ url_for('signup') }}">Signup</a>-->
+    <!--                    <a class="dropdown-item" href="{{ url_for('login') }}">Login</a>-->
+    <!--                    <a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a>-->
+    <!--                </div>-->
+    <!--            </li>-->
+    <!--        </ul>-->
+    <!--        <form class="form-inline my-2 my-lg-0">-->
+    <!--            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
+    <!--            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+    <!--        </form>-->
+    <!--    </div>-->
+    <!--</nav>-->
+
+    </div>
+
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+
 </body>
 
 </html>

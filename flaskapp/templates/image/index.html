@@ -1,37 +1,54 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>TattScan</title>
-    </head>
-    
-    <body>
-        <div class="content">
-            <h3>S3Drive: Upload and download files to and from your S3 bucket</h3>
-            
-            <p>AWS S3 Demo</p>
-            
-            <h2>{{ msg }}</h2>
-            
-            <div>
-                <h3>Upload your file here:</h3>
-                <form method="POST" action="/upload" enctype="multipart/form-data" >
-                    <input type="file" name="file">
-                    <input type="submit" value="Upload">
-                </form>
-            </div>
-            
-            <div>
-                <h3>These are your uploaded files:</h3>
-                <p>Click on the filename to download it.</p>
-                <ul>
-                {% for item in contents %}
-                    <li>
-                    <a href="/image/download/{{ item.Key }}"> {{ item.Key }} </a>
-                    </li>
-                {% endfor %}
-                </ul>
+{% extends "base.html" %}
 
-        </div>
-        </div>
-    </body>
-</html>
+{% block content %}
+<div class="content">
+
+    <h2>{{ msg }}</h2>
+
+    <div>
+        <h3>FILE UPLOAD</h3>
+        <p>Only JPG or PNG files please.</p>
+        <center>
+            <form method="POST" action="/upload" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="exampleFormControlFile1">Please upload your file here:</label>
+                    <input type="file" name="file" class="form-control-file">
+                    <button type="button" class="btn btn-primary">Upload</button>
+                </div>
+            </form>
+        </center>
+        <!--<form method="POST" action="/upload" enctype="multipart/form-data" >-->
+        <!--    <input type="file" name="file">-->
+        <!--<input type="submit" value="Upload">-->
+        <!--<button type="button" class="btn btn-info">Info</button>-->
+        <!--    <button type="button" class="btn btn-info">Upload</button>-->
+        <!--</form>-->
+    </div>
+
+    <div>
+
+        <h3>Uploaded files</h3>
+        <p>Click on the filename to download it.</p>
+        <ul>
+            {% for item in contents %}
+                {% if item.Key.startswith('testing') %}
+                    <li>
+                        &nbsp;
+                    </li>
+                {% else %}
+             <!--filename - download link -bull- scan link -->
+                    <li>
+                        {{ item.Key }} -  <a href="/image/download/{{ item.Key }}" class="btn btn-primary" role="button">Download</a>&nbsp;&bull;&nbsp;<a href="/image/scan/{{ item.Key }}" class="btn btn-primary" role="button">Scan</a>
+                    </li>
+
+                {% endif %}
+            {% endfor %}
+            <!--<ul>-->
+            <!--    {% for item in contents %}-->
+            <!--    <li>-->
+            <!--        <img src={{ item }} style="width: 250px">-->
+            <!--    </li>-->
+            <!--    {% endfor %}-->
+            <!--</ul>-->
+    </div>
+    {% endblock %}

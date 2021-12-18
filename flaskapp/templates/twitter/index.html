@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+        <div class="content">
+            <h3>S3Drive: Upload and download files to and from your S3 bucket</h3>
+            
+            <p>AWS S3 Demo</p>
+            
+            <h2>{{ msg }}</h2>
+            
+            <div>
+                <h3>Upload your file here:</h3>
+                <form method="POST" action="/upload" enctype="multipart/form-data" >
+                    <input type="file" name="file">
+                    <input type="submit" value="Upload">
+                </form>
+            </div>
+            
+            <div>
+                <h3>These are your uploaded files:</h3>
+                <p>Click on the filename to download it.</p>
+                <ul>
+                {% for item in contents %}
+                    <li>
+                    <a href="/image/download/{{ item.Key }}"> {{ item.Key }} </a>
+                    </li>
+                {% endfor %}
+                </ul>
+{% endblock %}

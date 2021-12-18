@@ -36,15 +36,54 @@ response = client.detect_labels(Image=
                                     'Name': JOEY
                                 }},
                                 MaxLabels = 10,
-                                MinConfidence=95)
-                                
-                                
+                                MinConfidence=0)
+ 
+
+results_dict = {}
+results_dict['Results'] = []
+# results_dict['Results']['Name'] = ""
+# results_dict['Results']['Confidence'] = ""
 # @ref: Hugo - https://stackoverflow.com/questions/51192145/aws-rekognition-responsefacedetails               
-for labels in response['Labels']:
-    name = labels['Name'] #to get the whole bounding box.
-    confidence = labels['Confidence'] 
-    # width = imgWidth * box['Width'] #the width of the bb.
-    print(str(name) + ", " + str(confidence)) #access age range low & high
+for label in response['Labels']:
+    name = label['Name'] #to get the whole bounding box.
+    confidence = label['Confidence'] 
+    # # width = imgWidth * box['Width'] #the width of the bb.
+    
+    # results[label] = values[name]
+    
+    # results['Name'] = label['Name']
+    # results['Confidence'] = label['Confidence']
+    # results = results_dict['Results']
+    # results['Name'] = labels['Name'] 
+    # results['Confidence'] = labels['Confidence']
+    
+    name_str = str(name)
+    conf_str = str(confidence)
+    
+    # results_dict["Results"]{"Name","Confidence"} = label['Name'], 
+    # results_dict["Results"]["Confidence"] = label['Confidence']
+    
+    results_dict['Results'].append({"Name": name_str, "Confidence": conf_str})
+    # i_str = str(i)
+    # print(i_str + "_" + name_str + ", " +  i_str  + "_" + conf_str) #access age range low & high
+    # i = i+1
+    
+    # new_results = {}                          
+    # new_results['Results'] = {}
+    # new_results['Results']['Name'] = name
+    # new_results['Results']['Confidence'] = confidence
+    # results_dict = results_dict + new_results
+    # results_dict.update(results)
+    # results["Name"].append(label['Name'])
+    # results["Confidence"].append(label['Confidence'])
+    # results_dict.update(new_results)
+    # print(results_dict)
+    # print(name_str + ", " + conf_str)
+# for key, value in results_dict.items(): 
+#     print(key, ': ', value) 
+
+# print("===============")
+print(results_dict)
 
 
 

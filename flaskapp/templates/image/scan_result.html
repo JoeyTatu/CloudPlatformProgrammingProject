@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="content">
+
+    <h2>{{ msg }}</h2>
+
+    <div>
+
+        <h3>IMAGE IDENTIFICATION</h3>
+        <p>We think this image is of: </p>
+        <ul>
+            {% for result in response['Results'] %}
+                    <!-- filename - download link -bull- scan link -->
+                    <li>
+                        {{ result['Name'] }} - Confidence: {{ result['Confidence'] }}% - <a href="https://twitter.com/search?q=%23{{ result['Name'] }}tattoo&src=typed_query&f=image" target="_blank" class="btn btn-primary" role="button">Search Twitter</a>
+                    </li>
+
+            {% endfor %}
+        </ul>
+        {% endblock %}
