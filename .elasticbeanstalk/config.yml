@@ -3,7 +3,7 @@ branch-defaults:
     environment: null
     group_suffix: null
 global:
-  application_name: tatt-scan
+  application_name: tattscan
   branch: null
   default_ec2_keyname: null
   default_platform: Python 3.6
